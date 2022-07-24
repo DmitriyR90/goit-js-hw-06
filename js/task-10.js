@@ -8,15 +8,35 @@ const refs = {
   createBtn: document.querySelector('[data-create]'),
   destroyBtn: document.querySelector('[data-destroy]'),
 };
-// console.log(refs.createBtn);
-// console.log(refs.input);
 
-refs.createBtn.addEventListener('click', createBoxes);
+refs.createBtn.addEventListener('click', getAmount);
+refs.destroyBtn.addEventListener('click', destroyBoxes);
 
-function createBoxes(amount) {
-  console.log(refs.input.value);
-  console.log(amount.type);
-  console.log(amount.currentTarget.value);
+console.log(refs.input.value);
+
+function getAmount() {
+  const amount = refs.input.value;
+  if (!amount) {
+    alert('Необходимо ввести значение!');
+  }
+  greateBoxes(amount);
 }
 
-// const boxes =
+function greateBoxes(amount) {
+  let baseWidth = 20;
+  let baseHeiht = 20;
+
+  for (let i = 1; i <= amount; i += 1) {
+    const boxEl = document.createElement('div');
+    const width = baseWidth + i * 10;
+    const height = baseHeiht + i * 10;
+    const backgroundColor = getRandomHexColor();
+    const border = '1px solid black';
+    boxEl.style.cssText = `width: ${width}px; height: ${height}px; background-color: ${backgroundColor}; border: ${border}; margin-bottom: 5px `;
+    refs.boxesContainer.append(boxEl);
+  }
+}
+
+function destroyBoxes() {
+  refs.boxesContainer.innerHTML = '';
+}
