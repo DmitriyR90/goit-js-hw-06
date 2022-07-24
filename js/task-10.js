@@ -12,8 +12,6 @@ const refs = {
 refs.createBtn.addEventListener('click', getAmount);
 refs.destroyBtn.addEventListener('click', destroyBoxes);
 
-console.log(refs.input.value);
-
 function getAmount() {
   const amount = refs.input.value;
   if (!amount) {
@@ -23,18 +21,22 @@ function getAmount() {
 }
 
 function greateBoxes(amount) {
-  let baseWidth = 20;
-  let baseHeiht = 20;
+  let width = 20;
+  let height = 20;
+  let boxArray = [];
 
   for (let i = 1; i <= amount; i += 1) {
     const boxEl = document.createElement('div');
-    const width = baseWidth + i * 10;
-    const height = baseHeiht + i * 10;
+    width += 10;
+    height += 10;
     const backgroundColor = getRandomHexColor();
     const border = '1px solid black';
+
     boxEl.style.cssText = `width: ${width}px; height: ${height}px; background-color: ${backgroundColor}; border: ${border}; margin-bottom: 5px `;
-    refs.boxesContainer.append(boxEl);
+    boxArray.push(boxEl.outerHTML);
   }
+
+  refs.boxesContainer.insertAdjacentHTML('beforeend', boxArray.join(''));
 }
 
 function destroyBoxes() {
