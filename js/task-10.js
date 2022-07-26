@@ -19,10 +19,10 @@ function getAmount() {
   }
   greateBoxes(amount);
 }
+let width = 20;
+let height = 20;
 
 function greateBoxes(amount) {
-  let width = 20;
-  let height = 20;
   let boxArray = [];
 
   for (let i = 1; i <= amount; i += 1) {
